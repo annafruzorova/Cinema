@@ -1,0 +1,26 @@
+﻿@model List<Cinema.DB.Movies>
+
+@if (Model.Count == 0)
+{
+    <b>There are no movies available!</b>
+}
+else
+{
+    <table class="table table-striped">
+        <tr>
+            <th>Category</th>
+            <th>Name</th>
+            <th>AvailableTime</th>
+            <th></th>
+        </tr>
+        @foreach (var movie in Model)
+        {
+            <tr>
+                <td>@movie.Category</td>
+                <td>@movie.Name</td>
+                <td>@movie.AvailableTime</td>
+               
+            </tr>
+        }
+    </table>
+}
