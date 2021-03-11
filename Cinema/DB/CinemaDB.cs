@@ -21,6 +21,7 @@ namespace Cinema.DB
 
         public virtual DbSet<Bookings> Bookings { get; set; }
         public virtual DbSet<Movies> Movies { get; set; }
+        public virtual DbSet<UserBookings> UserBookings { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -49,6 +50,17 @@ namespace Cinema.DB
             });
 
             modelBuilder.Entity<Movies>(entity =>
+            {
+                entity.Property(e => e.Category)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<UserBookings>(entity =>
             {
                 entity.Property(e => e.Category)
                     .IsRequired()

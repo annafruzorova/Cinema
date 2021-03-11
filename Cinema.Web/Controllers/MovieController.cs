@@ -30,9 +30,9 @@ namespace Cinema.Web.Controllers
             return RedirectToAction(nameof(MyMovies));
         }
 
-        public IActionResult CancelBooking(int moviesId)
+        public IActionResult CancelBooking(string name)
         {
-            manager.CancelBooking(moviesId);
+            manager.CancelBooking(name);
 
             
             return RedirectToAction(nameof(MyMovies));

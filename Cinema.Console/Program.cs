@@ -46,7 +46,7 @@ namespace Cinema.Console
             System.Console.WriteLine("Bookings: ");
             manager.GetUserBookings().ForEach(b =>
             {
-                System.Console.WriteLine(b.MoviesId);
+                System.Console.WriteLine(b.Name, b.Category, b.AvailableTime);
             });
 
 
@@ -54,18 +54,18 @@ namespace Cinema.Console
             System.Console.WriteLine("Would you like to cancel this booking?");
             while (true)
             {
-                System.Console.Write("Enter movies's name (or 0): ");
+                System.Console.Write("Enter movies's name (or stop): ");
                 string input = System.Console.ReadLine();
-                int stop = int.Parse(input);
-                if (stop == 0)
+                
+                if (input == "stop")
                 {
                     break;
                 }
 
-                var movie = manager.CancelBooking(stop);
+                var movie = manager.CancelBooking(input);
                 if (movie != null)
                 {
-                    System.Console.WriteLine($"Movie {movie.MoviesId} was succesfully cancel");
+                    System.Console.WriteLine($"Movie {movie.Name} was succesfully cancel");
                 }
                 else
                 {

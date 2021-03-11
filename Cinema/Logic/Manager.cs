@@ -8,12 +8,12 @@ namespace Cinema.Logic
 {
     public class Manager
     {
-        public List<Bookings> GetUserBookings()
+        public List<UserBookings> GetUserBookings()
         {
 
             using (var db = new CinemaDB())
             {
-                return db.Bookings.OrderBy(b => b.MoviesId).ToList();
+                return db.UserBookings.OrderBy(b => b.Name).ToList();
             }
         }
 
@@ -33,9 +33,12 @@ namespace Cinema.Logic
                 if (movie.AvailableTime != null)
                 {
 
-                    db.Bookings.Add(new Bookings()
+                    db.UserBookings.Add(new UserBookings()
                     {
-                        MoviesId = movie.Id
+                        Category = movie.Category,
+                        Name = movie.Name,
+                        AvailableTime = movie.AvailableTime
+                        
                     });
 
                     db.SaveChanges();
@@ -47,14 +50,14 @@ namespace Cinema.Logic
             return null;
         }
 
-        public Bookings CancelBooking(int moviesId)
+        public UserBookings CancelBooking(string name)
         {
             using (var db = new CinemaDB())
             {
-                var booking = db.Bookings.FirstOrDefault(b => b.MoviesId == moviesId);
+                var booking = db.UserBookings.FirstOrDefault(b => b.Name.ToLower() == name.ToLower());
                 if (booking != null)
                 {
-                    db.Bookings.Remove(booking);
+                    db.UserBookings.Remove(booking);
 
                     db.SaveChanges();
 
