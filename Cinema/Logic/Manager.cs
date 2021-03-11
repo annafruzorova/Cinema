@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Cinema.Logic
 {
-    public class Manager
+    public class Manager //UserBookings
     {
         public List<UserBookings> GetUserBookings()
         {
