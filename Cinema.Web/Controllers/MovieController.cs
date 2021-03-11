@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Cinema.Logic;
+using Cinema.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cinema.Web.Controllers
@@ -15,6 +16,21 @@ namespace Cinema.Web.Controllers
             var movies = manager.GetAllMovies();
 
             return View(movies);
+        }
+
+        public IActionResult Movies (int? id)
+        {
+            MoviesModel model = new MoviesModel();
+            model.Movies = manager.GetAllMovies();
+            if (id.HasValue)
+            {
+                
+                model.ActiveMovies = manager.GetMovies(id.Value);
+                
+                model.UserBookings = manager.GetByCategory(id.Value);
+            }
+
+            return View(model);
         }
 
         public IActionResult MyMovies()

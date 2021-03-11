@@ -10,6 +10,8 @@ namespace Cinema.DB
     public partial class UserBookings
     {
         public int Id { get; set; }
+
+        public int MoviesId { get; set; }
         public string Category { get; set; }
         public string Name { get; set; }
         public TimeSpan AvailableTime { get; set; }

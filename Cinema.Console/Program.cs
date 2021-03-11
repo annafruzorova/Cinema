@@ -8,7 +8,9 @@ namespace Cinema.Console
     class Program
     {
         private static Manager manager = new Manager();
-        
+       
+
+
         static void Main(string[] args)
         {
             System.Console.WriteLine("Movies: ");

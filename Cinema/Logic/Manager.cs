@@ -6,17 +6,9 @@ using System.Text;
 
 namespace Cinema.Logic
 {
-    public class Manager //UserBookings
+    public class Manager 
     {
-        public List<UserBookings> GetUserBookings()
-        {
-
-            using (var db = new CinemaDB())
-            {
-                return db.UserBookings.OrderBy(b => b.Name).ToList();
-            }
-        }
-
+    
         public List<Movies> GetAllMovies()
         {
 
@@ -50,6 +42,24 @@ namespace Cinema.Logic
             return null;
         }
 
+        public Movies GetMovies(int id)
+        {
+            using (var db = new CinemaDB())
+            {
+                return db.Movies.FirstOrDefault(m => m.Id == id);
+            }
+        }
+
+
+        public List<UserBookings> GetUserBookings()
+        {
+
+            using (var db = new CinemaDB())
+            {
+                return db.UserBookings.OrderBy(b => b.Name).ToList();
+            }
+        }
+
         public UserBookings CancelBooking(string name)
         {
             using (var db = new CinemaDB())
@@ -67,6 +77,21 @@ namespace Cinema.Logic
 
             return null;
         }
+
+        public List<UserBookings> GetByCategory(int moviesId)
+        {
+            using (var db = new CinemaDB())
+            {
+                return db.UserBookings
+
+                    .Where(b => b.MoviesId == moviesId)
+
+                    .OrderByDescending(b => b.Category)
+                    .ToList();
+            }
+        }
+
+
     }
     }
 
