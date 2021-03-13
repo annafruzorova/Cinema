@@ -1,35 +1,26 @@
-﻿@model MoviesModel
+﻿@model List<Cinema.DB.Movies>
 
-<ul class="nav nav-pills mb-3">
-    @foreach (var movie in Model.Movies)
-    {
-        <li class="nav-item">
-            <a class="nav-link" asp-controller="Movie" asp-action="Index" asp-route-id="@movie.Id">@movie.Name </a>
-        </li>
-    }
-</ul>
-@if (Model.ActiveMovies != null)
+@if (Model.Count == 0)
 {
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item active" aria-current="page">@Model.ActiveMovies.Name</li>
-        </ol>
-    </nav>
+    <b>There are no movies available!</b>
 }
-
-@if (Model.UserBookings != null)
+else
 {
-    <div class="row">
-        @foreach (var bookings in Model.UserBookings)
+    <table class="table table-striped">
+        <tr>
+            <th>Category</th>
+            <th>Name</th>
+            <th>AvailableTime</th>
+            <th></th>
+        </tr>
+        @foreach (var movie in Model)
         {
-            <div class="col-md-4 col-sm-12 mb-3">
-                <div class="card">
-                    <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em"></text></svg>
-                    <div class="card-body">
-                        <a class="card-link" asp-controller="Movie" asp-action="MyMovies" asp-route-id="@bookings.Id">@bookings.Name </a>
-                    </div>
-                </div>
-            </div>
+            <tr>
+                <td>@movie.Category</td>
+                <td>@movie.Name</td>
+                <td>@movie.AvailableTime</td>
+                <th><a asp-controller="Movie" asp-action="CreateBooking" asp-route-name="@movie.Name">Choose movie</a></th>
+            </tr>
         }
-    </div>
+    </table>
 }

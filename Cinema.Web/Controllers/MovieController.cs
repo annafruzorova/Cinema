@@ -18,20 +18,20 @@ namespace Cinema.Web.Controllers
             return View(movies);
         }
 
-        public IActionResult Movies (int? id)
-        {
-            MoviesModel model = new MoviesModel();
-            model.Movies = manager.GetAllMovies();
-            if (id.HasValue)
-            {
+        //public IActionResult Movies (int? id)
+        //{
+        //    MoviesModel model = new MoviesModel();
+        //    model.Movies = manager.GetAllMovies();
+        //    if (id.HasValue)
+        //    {
                 
-                model.ActiveMovies = manager.GetMovies(id.Value);
+        //        model.ActiveMovies = manager.GetMovies(id.Value);
                 
-                model.UserBookings = manager.GetByCategory(id.Value);
-            }
+        //        model.UserBookings = manager.GetByCategory(id.Value);
+        //    }
 
-            return View(model);
-        }
+        //    return View(model);
+        //}
 
         public IActionResult MyMovies()
         {

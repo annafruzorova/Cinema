@@ -78,18 +78,18 @@ namespace Cinema.Logic
             return null;
         }
 
-        public List<UserBookings> GetByCategory(int moviesId)
-        {
-            using (var db = new CinemaDB())
-            {
-                return db.UserBookings
+        //public List<UserBookings> GetByCategory(int moviesId)
+        //{
+        //    using (var db = new CinemaDB())
+        //    {
+        //        return db.UserBookings
 
-                    .Where(b => b.MoviesId == moviesId)
+        //            .Where(b => b.MoviesId == moviesId)
 
-                    .OrderByDescending(b => b.Category)
-                    .ToList();
-            }
-        }
+        //            .OrderByDescending(b => b.Category)
+        //            .ToList();
+        //    }
+        //}
 
 
     }
